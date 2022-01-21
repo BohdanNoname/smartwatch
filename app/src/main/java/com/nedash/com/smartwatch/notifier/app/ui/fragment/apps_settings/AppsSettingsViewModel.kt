@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AppsSettingsViewModel @Inject constructor(
-    private val dataBase: DataBaseSmartWatch,
+    dataBase: DataBaseSmartWatch,
     private val dispatcher: DispatcherProvider
 ) : ViewModel() {
 
