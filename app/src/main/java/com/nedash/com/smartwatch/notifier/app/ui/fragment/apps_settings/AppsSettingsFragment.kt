@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.nedash.com.smartwatch.notifier.app.R
 import com.nedash.com.smartwatch.notifier.app.databinding.AppsListItemBinding
 import com.nedash.com.smartwatch.notifier.app.databinding.FragmentAppsSettingsBinding
+import com.nedash.com.smartwatch.notifier.app.utils.Utils.gone
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.navigateWithSlideAnimation
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,6 +51,18 @@ class AppsSettingsFragment : Fragment() {
 
             etSearch.addTextChangedListener{
                 appsSettingsViewModel.getAppsByName(etSearch.text.toString())
+            }
+
+            if(etSearch.text.toString().isEmpty()){
+                ivSearch.visible()
+                ivClear.gone()
+            } else {
+                ivClear.visible()
+                ivSearch.gone()
+            }
+
+            ivClear.setOnClickListener {
+                etSearch.text.clear()
             }
         }
 
