@@ -18,6 +18,7 @@ class AppsSettingsViewModel @Inject constructor(
 
     private val _listAppData = MutableLiveData<List<AppDataEntity>>()
     var listAppData: LiveData<List<AppDataEntity>> = _listAppData
+    private val list = mutableListOf<AppDataEntity>()
 
     init {
         viewModelScope.launch(dispatcher.io()) {
@@ -29,5 +30,20 @@ class AppsSettingsViewModel @Inject constructor(
         viewModelScope.launch(dispatcher.io()) {
             dao.update(appDataEntity)
         }
+    }
+
+    fun getAppsByName(name: String){
+        viewModelScope.launch(dispatcher.main()) {
+            _listAppData.value?.forEach { app ->
+                if (app.packageName.contains(name))
+                    list.add(app)
+            }
+            _listAppData.value = list
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        list.clear()
     }
 }

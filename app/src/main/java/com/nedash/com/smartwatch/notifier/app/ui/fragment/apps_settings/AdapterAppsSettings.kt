@@ -40,7 +40,7 @@ class AdapterAppsSettings(
                         navigateToNotificationThemesFragment(app)
                     }
                     scSoundMode.setOnCheckedChangeListener { _, isChecked ->
-                        isChecked.let { app.mute = it }
+                        isChecked.let{ app.mute = it }
                         updateSoundModeInAppDataEntity(app)
                     }
                 }
