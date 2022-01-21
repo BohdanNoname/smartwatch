@@ -113,8 +113,12 @@
         android:label="fragment_notification_themes"
         tools:layout="@layout/fragment_notification_themes">
         <argument
+            android:name="isChangeDefaultThemeForAllApps"
+            app:argType="boolean"/>
+        <argument
             android:name="appDataEntity"
-            app:argType="com.nedash.com.smartwatch.notifier.app.db.entities.AppDataEntity" />
+            app:argType="com.nedash.com.smartwatch.notifier.app.db.entities.AppDataEntity"
+            app:nullable="true"/>
     </fragment>
     <fragment
         android:id="@+id/purchaseInsideApplicationFragment"

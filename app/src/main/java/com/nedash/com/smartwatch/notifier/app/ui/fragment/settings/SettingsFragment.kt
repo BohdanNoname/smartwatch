@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.nedash.com.smartwatch.notifier.app.R
 import com.nedash.com.smartwatch.notifier.app.databinding.FragmentSettingsBinding
 import com.nedash.com.smartwatch.notifier.app.ui.activity.MainActivity
 import com.nedash.com.smartwatch.notifier.app.utils.Constants.Url.OUR_APPS_URL
@@ -48,7 +49,11 @@ class SettingsFragment : Fragment() {
 
             with(requireContext()){
                 llDefaultTheme.setOnClickListener {
-                    showChangeDefaultThemeDialog(this, layoutInflater)
+                    SettingsFragmentDirections
+                        .actionSettingsFragmentToNotificationThemesFragment(
+                            isChangeDefaultThemeForAllApps = true,
+                            appDataEntity = null
+                        )
                 }
 
                 llOpenInGp.setOnClickListener {

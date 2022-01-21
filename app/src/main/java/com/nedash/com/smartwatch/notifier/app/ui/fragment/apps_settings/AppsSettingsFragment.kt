@@ -23,7 +23,7 @@ class AppsSettingsFragment : Fragment() {
     private val appsSettingsAdapter = AdapterAppsSettings (
         navigateToNotificationThemesFragment = {
         AppsSettingsFragmentDirections
-            .actionAppsSettingsFragmentToNotificationThemesFragment(it)
+            .actionAppsSettingsFragmentToNotificationThemesFragment(false, it)
     },
         updateSoundModeInAppDataEntity = {
             appsSettingsViewModel.setSoundMode(it)

@@ -22,4 +22,13 @@ class NotificationThemesViewModel @Inject constructor(
             dao.update(appDataEntity)
         }
     }
+
+    fun updateDefaultThemeForAllAppDataEntities(theme: NotificationTheme){
+        viewModelScope.launch(dispatcherProvider.io()) {
+            for (app in dao.getAll()){
+
+                dao.update(app)
+            }
+        }
+    }
 }

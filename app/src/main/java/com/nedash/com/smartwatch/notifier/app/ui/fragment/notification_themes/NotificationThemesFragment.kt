@@ -23,13 +23,14 @@ class NotificationThemesFragment : Fragment() {
     private var adapterNotificationThemes = AdapterNotificationThemes { theme ->
 //        Можно ли получая с args true или false делегировать выполнения метода с одиночной замены
 //         AppDataEntity на измениние всех позиций в БД
-        viewModel.updateThemeForAppDataEntity(
+        if (args.isChangeDefaultThemeForAllApps){
+            viewModel.updateDefaultThemeForAllAppDataEntities(theme)
+        } else {
             args.appDataEntity.apply {
-            with(theme){
-                themeName = getString(name)
-                notificationColor = color
-            }
-        })
+                    this?.themeName = getString(theme.name)
+                    this?.notificationColor = theme.color
+            }?.let { viewModel.updateThemeForAppDataEntity(it) }
+        }
     }
 
     override fun onCreateView(
