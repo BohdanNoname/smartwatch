@@ -5,16 +5,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.nedash.com.smartwatch.notifier.app.db.dao.AppDataDao
+import com.nedash.com.smartwatch.notifier.app.db.dao.PairedDevicesDao
 import com.nedash.com.smartwatch.notifier.app.db.entities.AppDataEntity
-import com.nedash.com.smartwatch.notifier.app.db.entities.DesiredDevicesEntity
+import com.nedash.com.smartwatch.notifier.app.db.entities.PairedDeviceEntity
 
 @Database(
-    entities = [AppDataEntity::class, DesiredDevicesEntity::class],
+    entities = [AppDataEntity::class, PairedDeviceEntity::class],
     version = 1,
     exportSchema = false
 )
 abstract class DataBaseSmartWatch: RoomDatabase() {
     abstract fun daoAppData(): AppDataDao
+    abstract fun daoPairedDevices(): PairedDevicesDao
 
     companion object{
         @Volatile

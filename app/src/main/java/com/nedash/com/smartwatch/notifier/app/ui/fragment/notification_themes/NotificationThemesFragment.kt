@@ -21,10 +21,11 @@ class NotificationThemesFragment : Fragment() {
     private val args by navArgs<NotificationThemesFragmentArgs>()
 
     private var adapterNotificationThemes = AdapterNotificationThemes { theme ->
-//        Можно ли получая с args true или false делегировать выполнения метода с одиночной замены
-//         AppDataEntity на измениние всех позиций в БД
         if (args.isChangeDefaultThemeForAllApps){
-            viewModel.updateDefaultThemeForAllAppDataEntities(theme)
+            viewModel.updateDefaultThemeForAllAppDataEntities(
+                getString(theme.name),
+                theme.color
+            )
         } else {
             args.appDataEntity.apply {
                     this?.themeName = getString(theme.name)

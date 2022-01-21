@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/full_transparent"
+    android:paddingVertical="10dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_available_devices"/>
+
+    <TextView
+        android:id="@+id/tv_available_device_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GP-FMT040"
+        android:textSize="20sp"
+        android:layout_marginStart="32dp"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

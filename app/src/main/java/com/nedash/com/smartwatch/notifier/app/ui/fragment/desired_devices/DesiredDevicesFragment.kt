@@ -16,6 +16,9 @@ class DesiredDevicesFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: DesiredDevicesViewModel by viewModels()
 
+    private val adapterPairedDevices = AdapterPairedDevices()
+    private val adapterAvailableDevices = AdapterAvailableDevices()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

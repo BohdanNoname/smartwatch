@@ -3,15 +3,14 @@ package com.nedash.com.smartwatch.notifier.app.ui.fragment.apps_settings
 import androidx.lifecycle.*
 import com.nedash.com.smartwatch.notifier.app.db.DataBaseSmartWatch
 import com.nedash.com.smartwatch.notifier.app.db.entities.AppDataEntity
-import com.nedash.com.smartwatch.notifier.app.utils.seald_classes.DispatcherProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class AppsSettingsViewModel @Inject constructor(
-    dataBase: DataBaseSmartWatch,
-    private val dispatcher: DispatcherProvider
+    dataBase: DataBaseSmartWatch
 ) : ViewModel() {
 
     private val dao = dataBase.daoAppData()
@@ -21,19 +20,19 @@ class AppsSettingsViewModel @Inject constructor(
     private val list = mutableListOf<AppDataEntity>()
 
     init {
-        viewModelScope.launch(dispatcher.io()) {
+        viewModelScope.launch(Dispatchers.IO) {
             _listAppData.value = dao.getAll()
         }
     }
 
     fun setSoundMode(appDataEntity: AppDataEntity){
-        viewModelScope.launch(dispatcher.io()) {
+        viewModelScope.launch(Dispatchers.IO) {
             dao.update(appDataEntity)
         }
     }
 
     fun getAppsByName(name: String){
-        viewModelScope.launch(dispatcher.main()) {
+        viewModelScope.launch(Dispatchers.Main) {
             _listAppData.value?.forEach { app ->
                 if (app.packageName.contains(name))
                     list.add(app)

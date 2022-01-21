@@ -122,4 +122,6 @@
     <string name="indigo_dye_theme_name">Indigo Dye</string>
     <string name="choose_your_style">Choose your style</string>
     <string name="buy_app_message_toast">Buy PRO for changing theme of application</string>
+    <string name="paired_devices">Paired devices</string>
+    <string name="available_devices">Available devices</string>
 </resources>
