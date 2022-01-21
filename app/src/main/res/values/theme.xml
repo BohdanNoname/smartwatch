@@ -1,0 +1,153 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+            <!--BLACK-->
+
+    <style name="Theme.Black" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/color_0E0E0E</item>
+        <item name="colorPrimaryVariant">@color/color_EFC101</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="splashFragmentImg">@drawable/img_logo_eerie_black</item>
+        <item name="mainBackgroundColorStart">@color/color_272727</item>
+        <item name="mainBackgroundColorCenter">@color/color_202020</item>
+        <item name="mainBackgroundColorEnd">@color/color_1C1C1C</item>
+        <item name="icHomeFragmentConnectViaQr">@drawable/ic_via_qr_black_th</item>
+        <item name="headerColorSettingsFragment">@color/color_FFCE00</item>
+        <item name="icSettingsColorBackground">@color/color_151515</item>
+        <item name="switchButtonTheme">@style/SwitchButtonThemeBlack</item>
+        <item name="dialogChangeDefaultThemeColorBackground">@color/color_343434</item>
+
+        <item name="strokeColorBlackDialogChangeDefaultTheme">@color/white</item>
+        <item name="strokeColorBlueDialogChangeDefaultTheme">@color/full_transparent</item>
+        <item name="strokeColorGreenDialogChangeDefaultTheme">@color/full_transparent</item>
+    </style>
+
+            <!--BLUE-->
+    <style name="Theme.Blue" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/color_033F63</item>
+        <item name="colorPrimaryVariant">@color/color_17BBD1</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="splashFragmentImg">@drawable/img_logo_indigo_dye</item>
+        <item name="mainBackgroundColorStart">@color/color_033F63</item>
+        <item name="mainBackgroundColorCenter">@color/color_033F63</item>
+        <item name="mainBackgroundColorEnd">@color/color_033F63</item>
+        <item name="icHomeFragmentConnectViaQr">@drawable/ic_via_qr_blue_th</item>
+        <item name="headerColorSettingsFragment">@color/color_17BBD1</item>
+        <item name="icSettingsColorBackground">@color/color_16557A</item>
+        <item name="switchButtonTheme">@style/SwitchButtonThemeBlue</item>
+        <item name="dialogChangeDefaultThemeColorBackground">@color/color_033F63</item>
+
+        <item name="strokeColorBlackDialogChangeDefaultTheme">@color/full_transparent</item>
+        <item name="strokeColorBlueDialogChangeDefaultTheme">@color/white</item>
+        <item name="strokeColorGreenDialogChangeDefaultTheme">@color/full_transparent</item>
+    </style>
+
+            <!--GREEN-->
+    <style name="Theme.Green" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/color_6FA395</item>
+        <item name="colorPrimaryVariant">@color/color_A6E7B8</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="splashFragmentImg">@drawable/img_logo_cambridge_blue</item>
+        <item name="mainBackgroundColorStart">@color/color_6FA395</item>
+        <item name="mainBackgroundColorCenter">@color/color_6FA395</item>
+        <item name="mainBackgroundColorEnd">@color/color_6FA395</item>
+        <item name="icHomeFragmentConnectViaQr">@drawable/ic_via_qr_green_th</item>
+        <item name="headerColorSettingsFragment">@color/color_A6E7B8</item>
+        <item name="icSettingsColorBackground">@color/color_5C8E81</item>
+        <item name="switchButtonTheme">@style/SwitchButtonThemeGreen</item>
+
+        <item name="dialogChangeDefaultThemeColorBackground">@color/color_6FA395</item>
+
+        <item name="strokeColorBlackDialogChangeDefaultTheme">@color/full_transparent</item>
+        <item name="strokeColorBlueDialogChangeDefaultTheme">@color/full_transparent</item>
+        <item name="strokeColorGreenDialogChangeDefaultTheme">@color/white</item>
+    </style>
+
+            <!--COMMON-->
+
+    <attr name="splashFragmentImg" format="reference"/>
+
+    <attr name="mainBackgroundColorStart" format="color"/>
+    <attr name="mainBackgroundColorCenter" format="color"/>
+    <attr name="mainBackgroundColorEnd" format="color"/>
+
+<!--    <attr name="ic_home_fragment_bluetooth" format="reference"/>-->
+<!--    <attr name="ic_home_fragment_discoverable" format="reference"/>-->
+<!--    <attr name="ic_home_fragment_connect" format="reference"/>-->
+    <attr name="icHomeFragmentConnectViaQr" format="reference"/>
+    <attr name="headerColorSettingsFragment" format="color"/>
+    <attr name="icSettingsColorBackground" format="color"/>
+
+    <attr name="backgroundTintColorNotificationTheme" format="color"/>
+
+    <attr name="strokeColorBlackDialogChangeDefaultTheme" format="color"/>
+    <attr name="strokeColorBlueDialogChangeDefaultTheme" format="color"/>
+    <attr name="strokeColorGreenDialogChangeDefaultTheme" format="color"/>
+
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/purchase_after_tutorial_bg</item>
+    </style>
+
+    <style name="ToolbarCustom" parent="Theme.AppCompat">
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="android:textColorPrimary">@color/black</item>
+    </style>
+
+    <style name="Theme.Toolbar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <attr name="colorActiveSwitchButton" format="color"/>
+    <attr name="colorNotActiveSwitchButton" format="color"/>
+    <attr name="colorForegroundSwitchButton" format="color"/>
+
+    <attr name="switchButtonTheme" format="reference"/>
+    <attr name="dialogChangeDefaultThemeColorBackground" format="color"/>
+
+
+    <style name="SwitchButtonThemeBlack" parent="Theme.Black">
+        <item name="colorControlActivated">@color/color_EFC101</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+        <item name="android:colorForeground">@color/white</item>
+    </style>
+
+    <style name="SwitchButtonThemeBlue" parent="Theme.Blue">
+        <item name="colorControlActivated">@color/color_17BBD1</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+        <item name="android:colorForeground">@color/white</item>
+    </style>
+
+    <style name="SwitchButtonThemeGreen" parent="Theme.Green">
+        <item name="colorControlActivated">@color/color_A6E7B8</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+        <item name="android:colorForeground">@color/white</item>
+    </style>
+
+    <color name="color_0E0E0E">#0E0E0E</color>
+    <color name="color_033F63">#033F63</color>
+    <color name="color_6FA395">#6FA395</color>
+    <color name="color_151515">#151515</color>
+    <color name="color_323232">#323232</color>
+    <color name="color_272727">#272727</color>
+    <color name="color_1C1C1C">#1C1C1C</color>
+    <color name="color_202020">#202020</color>
+    <color name="color_EFC101">#EFC101</color>
+    <color name="color_17BBD1">#17BBD1</color>
+    <color name="color_A6E7B8">#A6E7B8</color>
+    <color name="color_16557A">#16557A</color>
+    <color name="color_5C8E81">#5C8E81</color>
+    <color name="color_8C91A0">#8C91A0</color>
+
+</resources>

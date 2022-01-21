@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke android:width="1dp" android:color="?attr/strokeColorBlackDialogChangeDefaultTheme"/>
+    <gradient
+        android:startColor="@color/color_151515"
+        android:endColor="@color/color_151515"/>
+    <corners android:radius="15dp"/>
+</shape>
