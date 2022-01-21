@@ -10,8 +10,12 @@ data class AppDataEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id: Long = 0,
+    @ColumnInfo(name = "icon")
+    var icon: Int = 0,
     @ColumnInfo(name = "package_name")
     var packageName: String = "",
+    @ColumnInfo(name = "application_name")
+    var applicationName: String = "",
     @ColumnInfo(name = "theme_name")
     var themeName: String = "White",
     @ColumnInfo(name = "notification_color")

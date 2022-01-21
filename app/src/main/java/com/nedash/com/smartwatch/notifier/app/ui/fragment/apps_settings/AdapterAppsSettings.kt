@@ -33,12 +33,11 @@ class AdapterAppsSettings(
         : RecyclerView.ViewHolder(binding.root) {
             fun bind(app: AppDataEntity){
                 with(binding){
-                    val context = root.context
-                    val icon = context.applicationInfo.icon
-                    ivAppIcon.setImageResource(icon)
+                    ivAppIcon.setImageResource(app.icon)
                     ivTheme.setOnClickListener {
                         navigateToNotificationThemesFragment(app)
                     }
+                    scSoundMode.isChecked = app.mute
                     scSoundMode.setOnCheckedChangeListener { _, isChecked ->
                         isChecked.let{ app.mute = it }
                         updateSoundModeInAppDataEntity(app)

@@ -20,7 +20,6 @@ class AppsSettingsFragment : Fragment() {
     private var _binding: FragmentAppsSettingsBinding? = null
     private val binding get() = _binding!!
 
-
     private val appsSettingsAdapter =
         AdapterAppsSettings (
             navigateToNotificationThemesFragment = {
@@ -39,7 +38,6 @@ class AppsSettingsFragment : Fragment() {
     ): View {
         _binding = FragmentAppsSettingsBinding.inflate(inflater, container, false)
 
-
         with(binding){
             rvApps.layoutManager = LinearLayoutManager(requireContext())
             rvApps.adapter = appsSettingsAdapter
@@ -48,6 +46,9 @@ class AppsSettingsFragment : Fragment() {
                 appsSettingsViewModel.getAppsByName(etSearch.text.toString())
             }
 
+            swAllIsMute.setOnCheckedChangeListener { _, isChecked ->
+                appsSettingsViewModel.setSoundModeForAllApps(isChecked)
+            }
             if(etSearch.text.toString().isEmpty()){
                 ivSearch.visible()
                 ivClear.gone()
@@ -58,12 +59,15 @@ class AppsSettingsFragment : Fragment() {
 
             ivClear.setOnClickListener {
                 etSearch.text.clear()
+
+                appsSettingsViewModel.getAllApplications(requireContext())
             }
         }
 
         appsSettingsViewModel.listAppData.observe(viewLifecycleOwner){
             appsSettingsAdapter.submitList(it)
         }
+
         return binding.root
     }
 

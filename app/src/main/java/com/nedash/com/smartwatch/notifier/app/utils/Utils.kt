@@ -6,6 +6,7 @@ import android.app.Dialog
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -19,20 +20,27 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import com.android.billingclient.api.SkuDetails
 import com.nedash.com.smartwatch.notifier.app.BuildConfig
 import com.nedash.com.smartwatch.notifier.app.R
 import com.nedash.com.smartwatch.notifier.app.databinding.DialogChangeDefaultThemeBinding
+import com.nedash.com.smartwatch.notifier.app.db.DataBaseSmartWatch
+import com.nedash.com.smartwatch.notifier.app.db.entities.AppDataEntity
 import com.nedash.com.smartwatch.notifier.app.ui.activity.MainActivity
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.changeMainTheme
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.gone
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.mainTheme
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.showToast
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.visible
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.async
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.*
@@ -153,6 +161,27 @@ object Utils {
         } catch (e: Exception) {
             Toast.makeText(this, R.string.no_application_found, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    suspend fun getAllApps(context: Context, dataBase: DataBaseSmartWatch): List<AppDataEntity> {
+//        It may use not only one time
+        val pm = context.packageManager
+        val addedApps = dataBase.daoAppData().getAll()
+
+        return pm.getInstalledApplications(PackageManager.GET_META_DATA)
+            .filter {
+                it.flags and ApplicationInfo.FLAG_SYSTEM == 0
+            }
+            .filter { app ->
+                !addedApps.any { it.applicationName == app.packageName }
+            }
+            .map { appInfo ->
+                AppDataEntity(
+                    icon = appInfo.icon,
+                    applicationName = appInfo.loadLabel(pm).toString(),
+                    packageName = appInfo.packageName,
+                )
+            }
     }
 
     fun SkuDetails.convertPrice(): String {

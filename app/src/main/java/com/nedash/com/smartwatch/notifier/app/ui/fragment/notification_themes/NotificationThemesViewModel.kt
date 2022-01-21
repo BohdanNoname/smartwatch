@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nedash.com.smartwatch.notifier.app.db.DataBaseSmartWatch
 import com.nedash.com.smartwatch.notifier.app.db.entities.AppDataEntity
-import com.nedash.com.smartwatch.notifier.app.utils.seald_classes.NotificationTheme
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

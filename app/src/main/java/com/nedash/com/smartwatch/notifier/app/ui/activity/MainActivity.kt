@@ -1,12 +1,15 @@
 package com.nedash.com.smartwatch.notifier.app.ui.activity
 
+import android.annotation.SuppressLint
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.widget.Toast
 import androidx.annotation.ColorRes
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -18,12 +21,16 @@ import com.nedash.com.smartwatch.notifier.app.BuildConfig
 import com.nedash.com.smartwatch.notifier.app.R
 import com.nedash.com.smartwatch.notifier.app.billing.BillingHelper
 import com.nedash.com.smartwatch.notifier.app.databinding.ActivityMainBinding
+import com.nedash.com.smartwatch.notifier.app.db.DataBaseSmartWatch
+import com.nedash.com.smartwatch.notifier.app.db.entities.AppDataEntity
 import com.nedash.com.smartwatch.notifier.app.utils.SharedPreferences
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.gone
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.mainTheme
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.showToast
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.visible
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.async
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -34,6 +41,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var billingHelper: BillingHelper
     private lateinit var adView: AdView
     var isPro: Boolean = false
+    @Inject
+    private lateinit var dataBase: DataBaseSmartWatch
 
     private val adSize: AdSize
         get() {
@@ -112,7 +121,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-    private fun showOrHide(show: Boolean, @ColorRes color: Int, lock: Boolean = true, toolbarIcons: Boolean = true) {
+    private fun showOrHide(show: Boolean, @ColorRes color: Int, toolbarIcons: Boolean = true) {
         window?.statusBarColor = ContextCompat.getColor(this, color)
         with(binding) {
             if (show) {
@@ -131,13 +140,6 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.container_fragments)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        findNavController(R.id.container_fragments).addOnDestinationChangedListener(
-            listener
-        )
     }
 
     override fun onBackPressed() {
@@ -177,6 +179,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        findNavController(R.id.container_fragments).addOnDestinationChangedListener(
+            listener
+        )
     }
 
     override fun onPause() {

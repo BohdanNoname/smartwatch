@@ -17,6 +17,6 @@ interface AppDataDao {
     @Query("SELECT * FROM notification_theme")
     suspend fun getAll(): List<AppDataEntity>
 
-    @Query("SELECT * FROM notification_theme WHERE:packageName = package_name")
-    suspend fun getByPackageName(packageName: String): List<AppDataEntity>
+    @Query("SELECT * FROM notification_theme WHERE:applicationName = application_name")
+    suspend fun getByApplicationName(applicationName: String): List<AppDataEntity>
 }

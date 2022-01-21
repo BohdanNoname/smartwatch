@@ -14,10 +14,13 @@ object Convertor {
     fun toJson(data: Any): JsonElement =
         Json.encodeToJsonElement(data)
 
-    fun Context.toAppDataEntity(packageName: String, idThemeName: Int, idNotificationColor: Int){
+    fun Context.toAppDataEntity(applicationName: String, packageName: String,
+                 idThemeName: Int, idNotificationColor: Int): AppDataEntity{
         val themeName = getString(idThemeName)
         val notificationColor = getColor(idNotificationColor)
-        AppDataEntity(
+
+        return AppDataEntity(
+            applicationName = applicationName,
             packageName = packageName,
             themeName = themeName,
             notificationColor = notificationColor)
