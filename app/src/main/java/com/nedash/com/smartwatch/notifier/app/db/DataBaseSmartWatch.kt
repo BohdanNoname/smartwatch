@@ -6,9 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.nedash.com.smartwatch.notifier.app.db.dao.AppDataDao
 import com.nedash.com.smartwatch.notifier.app.db.entities.AppDataEntity
+import com.nedash.com.smartwatch.notifier.app.db.entities.DesiredDevicesEntity
 
 @Database(
-    entities = [AppDataEntity::class],
+    entities = [AppDataEntity::class, DesiredDevicesEntity::class],
     version = 1,
     exportSchema = false
 )

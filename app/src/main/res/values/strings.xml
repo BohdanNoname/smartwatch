@@ -83,22 +83,38 @@
 
 
     <string name="color_name_white">White</string>
-    <string name="color_name_rich_black">Rich Black</string>            0F0F0F
-    <string name="color_name_erin_green">Erin Green</string>            40C859
-    <string name="color_name_pine_green">Pine Green</string>            157A6E
-    <string name="color_name_electric_purple">Electric Purple</string>  BD00FF
-    <string name="color_name_slate_gray">Slate Gray</string>            6F8695
-    <string name="color_name_kelly_green">Kelly Green</string>          63B902
-    <string name="color_name_artichoke">Artichoke</string>              899878
-    <string name="color_name_fuchsia_pink">Fuchsia Pink</string>        E037D9
-    <string name="color_name_magic_mint">Magic Mint</string>            94B9AF
-    <string name="color_name_red_pigment">Red Pigment</string>          E31F1F
-    <string name="color_name_deep_saffron">Deep Saffron</string>        D76A03
-    <string name="color_name_aqua_blue">Aqua Blue</string>              51C6C9
-    <string name="color_name_blue_munsell">Blue Munsell</string>        0892A5
-    <string name="color_name_chrome_yellow">Chrome Yellow</string>      EDAA29
-    <string name="color_name_blush_pink">Blush Pink</string>            DA627D
-    <string name="color_name_blue_ryb">Blue RYB</string>                0254F5
+    <string name="color_name_rich_black">Rich Black</string>
+    0F0F0F
+    <string name="color_name_erin_green">Erin Green</string>
+    40C859
+    <string name="color_name_pine_green">Pine Green</string>
+    157A6E
+    <string name="color_name_electric_purple">Electric Purple</string>
+    BD00FF
+    <string name="color_name_slate_gray">Slate Gray</string>
+    6F8695
+    <string name="color_name_kelly_green">Kelly Green</string>
+    63B902
+    <string name="color_name_artichoke">Artichoke</string>
+    899878
+    <string name="color_name_fuchsia_pink">Fuchsia Pink</string>
+    E037D9
+    <string name="color_name_magic_mint">Magic Mint</string>
+    94B9AF
+    <string name="color_name_red_pigment">Red Pigment</string>
+    E31F1F
+    <string name="color_name_deep_saffron">Deep Saffron</string>
+    D76A03
+    <string name="color_name_aqua_blue">Aqua Blue</string>
+    51C6C9
+    <string name="color_name_blue_munsell">Blue Munsell</string>
+    0892A5
+    <string name="color_name_chrome_yellow">Chrome Yellow</string>
+    EDAA29
+    <string name="color_name_blush_pink">Blush Pink</string>
+    DA627D
+    <string name="color_name_blue_ryb">Blue RYB</string>
+    0254F5
     <string name="color_name_english_violet">English Violet</string>
     <string name="search">Search</string>
     <string name="eerie_black_theme_name">Eerie Black</string>

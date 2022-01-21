@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.nedash.com.smartwatch.notifier.app.ui.fragment.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_desiredDevicesFragment"
+            app:destination="@id/desiredDevicesFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/appsSettingsFragment"
@@ -130,5 +134,10 @@
         android:name="com.nedash.com.smartwatch.notifier.app.ui.fragment.purchase.PurchaseOfferFragment"
         android:label="fragment_purchase_offer"
         tools:layout="@layout/fragment_purchase_offer" />
+    <fragment
+        android:id="@+id/desiredDevicesFragment"
+        android:name="com.nedash.com.smartwatch.notifier.app.DesiredDevicesFragment"
+        android:label="fragment_desired_devices"
+        tools:layout="@layout/fragment_desired_devices" />
 
 </navigation>
