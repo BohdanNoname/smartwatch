@@ -125,4 +125,10 @@
     <string name="paired_devices">Paired devices</string>
     <string name="available_devices">Available devices</string>
     <string name="don_t_disturb_me">Don’t disturb me</string>
+    <string name="from">From:</string>
+    <string name="till">Till:</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="am">AM</string>
+    <string name="pm">PM</string>
 </resources>
