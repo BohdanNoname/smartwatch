@@ -16,6 +16,6 @@ object DataBaseModule {
     @Provides
     @Singleton
     fun providesDataBaseSmartWatch(@ApplicationContext context: Context): DataBaseSmartWatch =
-    DataBaseSmartWatch.getDataBase(context = context)
+        DataBaseSmartWatch.getDataBase(context = context)
 
 }

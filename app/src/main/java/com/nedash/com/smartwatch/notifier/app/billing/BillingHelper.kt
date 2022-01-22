@@ -126,7 +126,7 @@ class BillingHelper constructor(context: Context) : LifecycleObserver, Purchases
             Log.e(TAG, "queryPurchases: BillingClient is not ready")
         }
         Log.d(TAG, "queryPurchases: SUBS")
-        billingClient.queryPurchasesAsync(BillingClient.SkuType.SUBS) { p0, p1 ->
+        billingClient.queryPurchasesAsync(BillingClient.SkuType.SUBS) { _, p1 ->
             for (purchase in p1) {
                 if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED)
                     _isPro.postValue(true)

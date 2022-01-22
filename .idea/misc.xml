@@ -6,12 +6,15 @@
         <entry key="app/src/main/res/drawable/dialog_temer_ll_cancel_bg.xml" value="0.29635416666666664" />
         <entry key="app/src/main/res/drawable/dialog_temer_ll_ok_bg.xml" value="0.29635416666666664" />
         <entry key="app/src/main/res/drawable/dialog_timer_item_bg.xml" value="0.29635416666666664" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/ad_container.xml" value="0.1" />
         <entry key="app/src/main/res/layout/available_devices_list_item.xml" value="0.28020833333333334" />
         <entry key="app/src/main/res/layout/dialog_change_default_theme.xml" value="0.28020833333333334" />
         <entry key="app/src/main/res/layout/dialog_mute_timer.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_apps_settings.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_desired_devices.xml" value="0.28020833333333334" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.28020833333333334" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.28020833333333334" />
         <entry key="app/src/main/res/layout/paired_devices_list_item.xml" value="0.28020833333333334" />
       </map>
     </option>

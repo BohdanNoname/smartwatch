@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.app.NotificationManager
-import android.app.ProgressDialog.show
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
@@ -16,16 +15,14 @@ import android.os.Build
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import com.android.billingclient.api.SkuDetails
@@ -36,14 +33,11 @@ import com.nedash.com.smartwatch.notifier.app.databinding.DialogMuteTimerBinding
 import com.nedash.com.smartwatch.notifier.app.db.DataBaseSmartWatch
 import com.nedash.com.smartwatch.notifier.app.db.entities.AppDataEntity
 import com.nedash.com.smartwatch.notifier.app.ui.activity.MainActivity
-import com.nedash.com.smartwatch.notifier.app.utils.Dialogs.showTimerDialog
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.changeMainTheme
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.gone
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.mainTheme
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.showToast
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.visible
-import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.async
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.*
@@ -167,7 +161,8 @@ object Utils {
     }
 
     suspend fun getAllApps(context: Context, dataBase: DataBaseSmartWatch): List<AppDataEntity> {
-        val pm = context.packageManager
+
+        val pm = context.applicationContext.packageManager
         val addedApps = dataBase.daoAppData().getAll()
 
         return pm.getInstalledApplications(PackageManager.GET_META_DATA)
@@ -236,7 +231,6 @@ object Dialogs{
         context: Context,
         layoutInflater: LayoutInflater
     ): Dialog{
-
         val binding = DialogChangeDefaultThemeBinding.inflate(layoutInflater)
         with(Dialog(context)) {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -257,17 +251,14 @@ object Dialogs{
                     clBlackTheme
                         .changeDefaultTheme(
                             this,
-                            sharedPreferences,
-                            (activity as MainActivity))
+                            sharedPreferences)
                     clBlueTheme
                         .changeDefaultTheme(
                             this,
-                            sharedPreferences,
-                            (activity as MainActivity))
+                            sharedPreferences)
                     clGreenTheme
                         .changeDefaultTheme(this,
-                            sharedPreferences,
-                            (activity as MainActivity))
+                            sharedPreferences)
                 } else {
                     ivLockBlue.visible()
                     ivLockGreen.visible()
@@ -293,8 +284,7 @@ object Dialogs{
 
     private fun View.changeDefaultTheme(
         binding: DialogChangeDefaultThemeBinding,
-        sharedPreferences: SharedPreferences,
-        activity: MainActivity) {
+        sharedPreferences: SharedPreferences) {
         with(binding){
             val newMainTheme = when(id){
                 R.id.cl_black_theme -> {
@@ -315,9 +305,9 @@ object Dialogs{
                 }
             }
             sharedPreferences.changeMainTheme(newMainTheme)
-            with(context){
-                showToast(getString(R.string.activity_will_restart))
-            }
+            context.showToast(context.getString(R.string.activity_will_restart))
+
+            findViewById<ViewGroup>(R.id.activity_main).invalidate()
         }
     }
 }

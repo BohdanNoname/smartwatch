@@ -8,6 +8,7 @@ import com.nedash.com.smartwatch.notifier.app.db.dao.AppDataDao
 import com.nedash.com.smartwatch.notifier.app.db.dao.PairedDevicesDao
 import com.nedash.com.smartwatch.notifier.app.db.entities.AppDataEntity
 import com.nedash.com.smartwatch.notifier.app.db.entities.PairedDeviceEntity
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Database(
     entities = [AppDataEntity::class, PairedDeviceEntity::class],

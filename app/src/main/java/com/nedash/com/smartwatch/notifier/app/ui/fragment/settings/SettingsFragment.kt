@@ -34,7 +34,6 @@ class SettingsFragment : Fragment() {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
         with(binding){
-
             if((activity as MainActivity).isPro){
                 llBecomePro.gone()
             } else {

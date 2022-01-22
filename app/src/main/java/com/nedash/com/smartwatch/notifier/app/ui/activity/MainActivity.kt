@@ -1,15 +1,9 @@
 package com.nedash.com.smartwatch.notifier.app.ui.activity
 
-import android.annotation.SuppressLint
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.DisplayMetrics
-import androidx.annotation.ColorRes
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -22,15 +16,19 @@ import com.nedash.com.smartwatch.notifier.app.R
 import com.nedash.com.smartwatch.notifier.app.billing.BillingHelper
 import com.nedash.com.smartwatch.notifier.app.databinding.ActivityMainBinding
 import com.nedash.com.smartwatch.notifier.app.db.DataBaseSmartWatch
-import com.nedash.com.smartwatch.notifier.app.db.entities.AppDataEntity
 import com.nedash.com.smartwatch.notifier.app.utils.SharedPreferences
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.gone
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.mainTheme
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.showToast
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.visible
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.async
 import javax.inject.Inject
+import android.view.WindowInsets
+
+import android.os.Build
+
+
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -41,24 +39,51 @@ class MainActivity : AppCompatActivity() {
     lateinit var billingHelper: BillingHelper
     private lateinit var adView: AdView
     var isPro: Boolean = false
+
     @Inject
-    private lateinit var dataBase: DataBaseSmartWatch
+    lateinit var dataBase: DataBaseSmartWatch
 
     private val adSize: AdSize
         get() {
-            val display = windowManager.defaultDisplay
-            val outMetrics = DisplayMetrics()
-            display.getMetrics(outMetrics)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                val windowMetrics = windowManager.currentWindowMetrics
+                val insets = windowMetrics.windowInsets
+                    .getInsetsIgnoringVisibility(WindowInsets.Type.systemBars())
 
-            val density = outMetrics.density
+                windowMetrics.bounds.width() - insets.left - insets.right
+                val outMetrics = DisplayMetrics()
+                var adWidthPixels = binding.includeAd.flAdBanner.width.toFloat()
+                if (adWidthPixels == 0f)
+                    adWidthPixels = outMetrics.widthPixels.toFloat()
+                val adWidth = (adWidthPixels / insets.describeContents()).toInt()
+                return AdSize
+                    .getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth)
+            } else {
+                val outMetrics = DisplayMetrics()
+                windowManager.defaultDisplay.getMetrics(outMetrics)
+                val density = outMetrics.density
+                var adWidthPixels = binding.includeAd.flAdBanner.width.toFloat()
 
-            var adWidthPixels = binding.includeAd.flAdBanner.width.toFloat()
-            if (adWidthPixels == 0f) {
-                adWidthPixels = outMetrics.widthPixels.toFloat()
+                if (adWidthPixels == 0f)
+                    adWidthPixels = outMetrics.widthPixels.toFloat()
+
+                val adWidth = (adWidthPixels / density).toInt()
+                return AdSize
+                    .getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth)
             }
-
-            val adWidth = (adWidthPixels / density).toInt()
-            return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth)
+//            val display = windowManager.defaultDisplay
+//            val outMetrics = DisplayMetrics()
+//            display.getMetrics(outMetrics)
+//
+//            val density = outMetrics.density
+//
+//            var adWidthPixels = binding.includeAd.flAdBanner.width.toFloat()
+//            if (adWidthPixels == 0f) {
+//                adWidthPixels = outMetrics.widthPixels.toFloat()
+//            }
+//
+//            val adWidth = (adWidthPixels / density).toInt()
+//            return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth)
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,24 +140,29 @@ class MainActivity : AppCompatActivity() {
         NavController.OnDestinationChangedListener{ _, destination, _ ->
             when(destination.id){
 //                TODO(SHOW OR HIDE ICONS IN TOOLBAR)
-                R.id.homeFragment -> {}
+                R.id.homeFragment -> {
+                    showOrHide()
+                }
                 R.id.appsSettingsFragment -> {}
                 R.id.settingsFragment -> {}
             }
         }
 
-    private fun showOrHide(show: Boolean, @ColorRes color: Int, toolbarIcons: Boolean = true) {
-        window?.statusBarColor = ContextCompat.getColor(this, color)
+    private fun showOrHide(isToolbarShow: Boolean = true,
+                           tutorialIcon: Boolean = true,
+                           changeThemeIcon: Boolean = true,
+                           isProIcon: Boolean = true) {
+//        window?.statusBarColor = ContextCompat.getColor(this, color)
         with(binding) {
-            if (show) {
+            if (isToolbarShow) {
                 toolbar.visible()
                 if (!isPro){
                     includeAd.rlAdContainer.visible()
                     toolbar.visible()
-//                    TODO(Add here state of visibility for icons in toolbar)
+//                    ivTutorial
                 }
             } else {
-                toolbar.gone()
+                this.toolbar.gone()
             }
         }
     }

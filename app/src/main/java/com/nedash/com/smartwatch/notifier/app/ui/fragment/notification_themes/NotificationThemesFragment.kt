@@ -23,8 +23,9 @@ class NotificationThemesFragment : Fragment() {
     private var adapterNotificationThemes = AdapterNotificationThemes { theme ->
         if (args.isChangeDefaultThemeForAllApps){
             viewModel.updateDefaultThemeForAllAppDataEntities(
-                getString(theme.name),
-                theme.color
+                context = requireContext(),
+                themeName = getString(theme.name),
+                color = theme.color
             )
         } else {
             args.appDataEntity.apply {
