@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.app.NotificationManager
+import android.app.ProgressDialog.show
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
@@ -31,9 +32,11 @@ import com.android.billingclient.api.SkuDetails
 import com.nedash.com.smartwatch.notifier.app.BuildConfig
 import com.nedash.com.smartwatch.notifier.app.R
 import com.nedash.com.smartwatch.notifier.app.databinding.DialogChangeDefaultThemeBinding
+import com.nedash.com.smartwatch.notifier.app.databinding.DialogMuteTimerBinding
 import com.nedash.com.smartwatch.notifier.app.db.DataBaseSmartWatch
 import com.nedash.com.smartwatch.notifier.app.db.entities.AppDataEntity
 import com.nedash.com.smartwatch.notifier.app.ui.activity.MainActivity
+import com.nedash.com.smartwatch.notifier.app.utils.Dialogs.showTimerDialog
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.changeMainTheme
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.gone
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.mainTheme
@@ -164,7 +167,6 @@ object Utils {
     }
 
     suspend fun getAllApps(context: Context, dataBase: DataBaseSmartWatch): List<AppDataEntity> {
-//        It may use not only one time
         val pm = context.packageManager
         val addedApps = dataBase.daoAppData().getAll()
 
@@ -211,11 +213,30 @@ object Utils {
 }
 
 object Dialogs{
+
+
+    fun Fragment.showTimerDialog(
+        context: Context,
+        layoutInflater: LayoutInflater
+    ): Dialog {
+        val binding = DialogMuteTimerBinding.inflate(layoutInflater)
+        with(Dialog(context)){
+            with(binding){
+
+            }
+            show()
+            return this
+        }
+    }
+
+
+
     @SuppressLint("ResourceType")
     fun Fragment.showChangeDefaultThemeDialog(
         context: Context,
         layoutInflater: LayoutInflater
     ): Dialog{
+
         val binding = DialogChangeDefaultThemeBinding.inflate(layoutInflater)
         with(Dialog(context)) {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -293,12 +314,11 @@ object Dialogs{
                     R.style.Theme_Black
                 }
             }
-
             sharedPreferences.changeMainTheme(newMainTheme)
-
+            with(context){
+                showToast(getString(R.string.activity_will_restart))
+            }
         }
-//    Exit from dialog and restart of MainActivity
-//    Check it method is work
     }
 }
 

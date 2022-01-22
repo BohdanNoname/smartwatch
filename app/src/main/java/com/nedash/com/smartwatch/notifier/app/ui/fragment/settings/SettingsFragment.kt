@@ -67,6 +67,10 @@ class SettingsFragment : Fragment() {
                 llOurSite.setOnClickListener {
                     openURL(SITE_URL)
                 }
+
+                llDefaultTheme.setOnClickListener {
+                    showChangeDefaultThemeDialog(requireContext(), layoutInflater)
+                }
             }
         }
 

@@ -131,4 +131,5 @@
     <string name="ok">Ok</string>
     <string name="am">AM</string>
     <string name="pm">PM</string>
+    <string name="activity_will_restart">For changing theme we have to restart the application</string>
 </resources>

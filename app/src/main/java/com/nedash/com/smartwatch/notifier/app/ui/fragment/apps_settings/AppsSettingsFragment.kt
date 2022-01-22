@@ -46,6 +46,10 @@ class AppsSettingsFragment : Fragment() {
                 appsSettingsViewModel.getAppsByName(etSearch.text.toString())
             }
 
+            clHeader.setOnClickListener {
+
+            }
+
             swAllIsMute.setOnCheckedChangeListener { _, isChecked ->
                 appsSettingsViewModel.setSoundModeForAllApps(isChecked)
             }
@@ -71,8 +75,11 @@ class AppsSettingsFragment : Fragment() {
         return binding.root
     }
 
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+
     }
 }
