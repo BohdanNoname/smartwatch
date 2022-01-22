@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nedash.com.smartwatch.notifier.app.databinding.FragmentAppsSettingsBinding
+import com.nedash.com.smartwatch.notifier.app.utils.Dialogs.showTimerDialog
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.gone
 import com.nedash.com.smartwatch.notifier.app.utils.Utils.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,7 +48,7 @@ class AppsSettingsFragment : Fragment() {
             }
 
             clHeader.setOnClickListener {
-
+                showTimerDialog(requireContext(), layoutInflater)
             }
 
             swAllIsMute.setOnCheckedChangeListener { _, isChecked ->
